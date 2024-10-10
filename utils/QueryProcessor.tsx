@@ -46,5 +46,31 @@ export default function QueryProcessor(query: string): string {
       }
     }
   }
+
+  if (query.toLowerCase().includes("primes")) {
+    const numbers = query.match(/[0-9]+/g);
+    if (numbers) {
+      for (const num of numbers) {
+        if (isPrime(Number(num))) {
+          return num;
+        }
+      }
+    }
+  }
+
   return "";
+}
+
+function isPrime(num: number): boolean {
+  if (num <= 1) {
+    return false;
+  }
+
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i == 0) {
+      return false;
+    }
+  }
+
+  return true;
 }
