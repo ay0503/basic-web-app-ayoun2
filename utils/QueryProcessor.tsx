@@ -58,6 +58,21 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("power") && query.toLowerCase().includes("of")) {
+    const numbers = query.match(/[0-9]+/g);
+    if (numbers && numbers.length === 2) {
+      const [num1, num2] = numbers.map(Number);
+      return Math.pow(num1, num2).toString();
+    }
+  }
+
+  if (query.toLowerCase().includes("minus")) {
+    const numbers = query.match(/[0-9]+/g);
+    if (numbers && numbers.length === 2) {
+      const [num1, num2] = numbers.map(Number);
+      return (num1 - num2).toString()
+  }
+
   return "";
 }
 
