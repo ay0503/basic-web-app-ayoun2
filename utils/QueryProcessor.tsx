@@ -11,5 +11,20 @@ export default function QueryProcessor(query: string): string {
     return "Rohan";
   }
 
+  if (query.toLowerCase().includes("plus")) {
+    const numbers = query.match(/[0-9]+/g);
+    if (numbers && numbers.length === 2) {
+      const [num1, num2] = numbers.map(Number);
+      return (num1 + num2).toString();
+    }
+  }
+
+  if (query.toLowerCase().includes("largest")) {
+    const numbers = query.match(/[0-9]+/g);
+    if (numbers) {
+      return numbers.reduce((max, current) => Math.max(Number(max), Number(current)).toString());
+    }
+  }
+
   return "";
 }
