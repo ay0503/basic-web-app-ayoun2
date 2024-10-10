@@ -26,5 +26,25 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.toLowerCase().includes("multiplied")) {
+    const numbers = query.match(/[0-9]+/g);
+    if (numbers && numbers.length === 2) {
+      const [num1, num2] = numbers.map(Number);
+      return (num1 * num2).toString();
+    }
+  }
+
+  if (query.toLowerCase().includes("square") && query.toLowerCase().includes("cube")) {
+    const numbers = query.match(/[0-9]+/g);
+    if (numbers) {
+      for (const num of numbers) {
+        const sqrt = Math.sqrt(Number(num));
+        const cubeRoot = Math.cbrt(Number(num));
+        if (Number.isInteger(sqrt) && Number.isInteger(cubeRoot)) {
+          return num;
+        }
+      }
+    }
+  }
   return "";
 }
